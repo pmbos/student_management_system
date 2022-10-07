@@ -1,0 +1,57 @@
+@model IEnumerable<TeacherToken>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-6">
+        <h2>Teacher Registration Tokens</h2>
+    </div>
+    <div class="col-6 text-end">
+        <form method="post" asp-action="Create">
+            <button class="btn btn-primary" type="submit">Create!</button>
+        </form>
+    </div>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Token</th>
+        <th>Expired?</th>
+        <th></th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    @foreach (var token in Model)
+    {
+        <tr>
+            <td>
+                @token.Token
+            </td>
+            <td>
+                @{
+                    var tokenExpired = token.ExpiresAt <= DateTime.Now;
+                }
+                
+                @if (tokenExpired)
+                {
+                    <div>Yes</div>
+                }
+                else
+                {
+                    <div>No</div>
+                }
+            </td>
+            <td>
+                <form method="post" asp-action="Delete" asp-route-id="@token.Id">
+                    <button class="btn btn-danger" type="submit">Delete!</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
