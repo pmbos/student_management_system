@@ -1792,8 +1792,4 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\LICENSE.txt" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="wwwroot\dist" />
-    </ItemGroup>
-
 </Project>
